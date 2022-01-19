@@ -1,2 +1,2 @@
 # SuperCollider
-Repository for Supercollider Works
+Repository for SuperCollider Works
