@@ -1,0 +1,1 @@
+# Notas sobre uso de constantes y tipos de variables
