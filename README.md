@@ -9,3 +9,4 @@ Hasta el momento, las fuentes en las que me he basado para escribir las notas so
 - Computer Music with examples in SuperCollider 3, David Michael Cottle
 - [SuperCollider 3.11.2 Documentation home](https://depts.washington.edu/dxscdoc/Help/Help.html "ir a página")
 - Introduction to SuperCollider, Andrea Valle
+- Mark Polish tutorial
