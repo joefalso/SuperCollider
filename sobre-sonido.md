@@ -9,9 +9,10 @@ _Con el tiempo, iré ordenando esto, extendendiendo las discusiones, mejorando l
 El sonido hace referencia a una onda mecánica, la cual puede ser descrita más allá de la sensación de movimiento, propio de cualquier onda mecánica, esto es, puede ser "escuchada". 
 
 En el medio físico, el sonido presenta las siguientes propiedades:
-- Altura (mús) o frecuencia (fis)
-- Intensidad (mús) o amplitud (fis)
-- Duración (mús/fis)
+- Altura (mús) o frecuencia (fís): se refiere a los ciclos por unidad de tiempo relacionados a una onda.
+- Intensidad (mús) o amplitud (fís)
+- Duración (mús/fís): se refiere a la persistencia en el tiempo del sonido.
+- Timbre (mús/fís): es la totalidad de las ondas sonoras emitidas en un instante por una fuente. Esta característica se debe a la materialidad de esta última.
 
 A estas propiedades de cualquier sonido emitido por una fuente, podemos agregar espacialidad, esto en cuenta que hay receptor encontrado a una cierta distancia del emisor. Dado que el sonido, en circunstancias normales, suele transmitirse omnidireccionalmete, la distancia podría considerarse un factor relevante, esto debido a la [velocidad de ondas sonoras](https://openstax.org/books/f%C3%ADsica-universitaria-volumen-1/pages/17-2-velocidad-del-sonido "ir a link"), que podría ser causa de latencias. 
 
