@@ -22,14 +22,14 @@ Ahora, siguiendo la idea de cuerpos interactuando con las ondas, también podrí
 En un medio digital, como son los computadores, los sonidos serán convertidos en datos, a través de un convertidor dedicado, los llamados DAC o digital audio converter. Para la realización de esta traducción hay algunas técnologías que están implementadas en los equipos que se venden comercialmente. Una es el Registro de Aproximaciones Sucesivas o SAR, es la que más he visto implementada en equipos de alta o baja calidad. Otra técnología es la conocida como Sigma-Delta.
 
 Los distintos sistemas operativos tienen implementados drivers para hacer uso de las entradas y salidas de audio de los equipos. En Windows 10, al usar los comandos
-´´´supercollider  
+```supercollider
 ServerOptions.devices;
 ServerOptions.inDevices;
 ServerOptions.outDevices;
-´´´
+```
 podemos ver las APIs usadas por SC para los servicios de audio. Estos son los resultados:
-´´´supercollider
+```supercollider
 -> [ MME : Microsoft Sound Mapper - Input, MME : Microphone (2- High Definition , MME : Microsoft Sound Mapper - Output, MME : Altavoces (2- High Definition A, Windows DirectSound : Controlador primario de captura de sonido, Windows DirectSound : Microphone (2- High Definition Audio Device), Windows DirectSound : Controlador primario de sonido, Windows DirectSound : Altavoces (2- High Definition Audio Device), Windows WASAPI : Altavoces (2- High Definition Audio Device), Windows WASAPI : Microphone (2- High De...etc...
 -> [ MME : Microsoft Sound Mapper - Input, MME : Microphone (2- High Definition , Windows DirectSound : Controlador primario de captura de sonido, Windows DirectSound : Microphone (2- High Definition Audio Device), Windows WASAPI : Microphone (2- High Definition Audio Device), Windows WDM-KS : Micrófono (HD Audio Microphone) ]
 -> [ MME : Microsoft Sound Mapper - Output, MME : Altavoces (2- High Definition A, Windows DirectSound : Controlador primario de sonido, Windows DirectSound : Altavoces (2- High Definition Audio Device), Windows WASAPI : Altavoces (2- High Definition Audio Device), Windows WDM-KS : Speakers (HD Audio Headphone/Speakers) ]
-´´´
+```
