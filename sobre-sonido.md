@@ -8,11 +8,11 @@ _Con el tiempo, iré ordenando esto, extendendiendo las discusiones, mejorando l
 
 El sonido hace referencia a una onda mecánica, la cual puede ser descrita más allá de la sensación de movimiento, propio de cualquier onda mecánica, esto es, puede ser "escuchada". 
 
-En el medio físico, el sonido presenta las siguientes propiedades:
-- Altura (mús) o frecuencia (fís): se refiere a los ciclos por unidad de tiempo relacionados a una onda.
-- Intensidad (mús) o amplitud (fís)
-- Duración (mús/fís): se refiere a la persistencia en el tiempo del sonido.
-- Timbre (mús/fís): es la totalidad de las ondas sonoras emitidas en un instante por una fuente. Esta característica se debe a la materialidad de esta última.
+Las siguientes propiedades del sonido suelen ser las más mencionadas ya sea desde la música (mús) o  desde la física (fís):
+- Altura (mús) o frecuencia (fís): se refiere a la cantidad de ciclos por unidad de tiempo relacionados a una onda. Los sonidos graves están asociados a bajas frecuencias, y los sonidos agudos están asociados a altas frecuencías.
+- Intensidad/Volumen (mús) o amplitud (fís): se refiere a la potencia en un área de una onda sonora.
+- Duración (mús/fís): se refiere a la persistencia en el tiempo de un sonido.
+- Timbre (mús/fís): es la totalidad de las ondas sonoras emitidas en un instante por una fuente. Esta característica se debe a la materialidad de esta última y es lo que hace distinguir un sonido de otro. También puede decirse que un timbre específico tiene asociada una forma de onda específica.
 
 A estas propiedades de cualquier sonido emitido por una fuente, podemos agregar espacialidad, esto en cuenta que hay receptor encontrado a una cierta distancia del emisor. Dado que el sonido, en circunstancias normales, suele transmitirse omnidireccionalmete, la distancia podría considerarse un factor relevante, esto debido a la [velocidad de ondas sonoras](https://openstax.org/books/f%C3%ADsica-universitaria-volumen-1/pages/17-2-velocidad-del-sonido "ir a link"), que podría ser causa de latencias. 
 
@@ -23,14 +23,18 @@ Ahora, siguiendo la idea de cuerpos interactuando con las ondas, también podrí
 En un medio digital, como son los computadores, los sonidos serán convertidos en datos, a través de un convertidor dedicado, los llamados DAC o digital audio converter. Para la realización de esta traducción hay algunas técnologías que están implementadas en los equipos que se venden comercialmente. Una es el Registro de Aproximaciones Sucesivas o SAR, es la que más he visto implementada en equipos de alta o baja calidad. Otra técnología es la conocida como Sigma-Delta.
 
 Los distintos sistemas operativos tienen implementados drivers para hacer uso de las entradas y salidas de audio de los equipos. En Windows 10, al usar los comandos
+
 ```supercollider
 ServerOptions.devices;
 ServerOptions.inDevices;
 ServerOptions.outDevices;
 ```
+
 podemos ver las APIs usadas por SC para los servicios de audio. Estos son los resultados:
+
 ```supercollider
 -> [ MME : Microsoft Sound Mapper - Input, MME : Microphone (2- High Definition , MME : Microsoft Sound Mapper - Output, MME : Altavoces (2- High Definition A, Windows DirectSound : Controlador primario de captura de sonido, Windows DirectSound : Microphone (2- High Definition Audio Device), Windows DirectSound : Controlador primario de sonido, Windows DirectSound : Altavoces (2- High Definition Audio Device), Windows WASAPI : Altavoces (2- High Definition Audio Device), Windows WASAPI : Microphone (2- High De...etc...
 -> [ MME : Microsoft Sound Mapper - Input, MME : Microphone (2- High Definition , Windows DirectSound : Controlador primario de captura de sonido, Windows DirectSound : Microphone (2- High Definition Audio Device), Windows WASAPI : Microphone (2- High Definition Audio Device), Windows WDM-KS : Micrófono (HD Audio Microphone) ]
 -> [ MME : Microsoft Sound Mapper - Output, MME : Altavoces (2- High Definition A, Windows DirectSound : Controlador primario de sonido, Windows DirectSound : Altavoces (2- High Definition Audio Device), Windows WASAPI : Altavoces (2- High Definition Audio Device), Windows WDM-KS : Speakers (HD Audio Headphone/Speakers) ]
 ```
+
