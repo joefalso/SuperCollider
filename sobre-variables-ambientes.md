@@ -16,8 +16,8 @@ SynthDef(\sinte1, { |freq = 220, phase = 0, amp 0.5, busOut = 0|
 }).add;
 )
 
-~x = Synth.new(\sinte1).run(false);  //el sintetizador es alojado en un nodo, pero no corre
-~x.run.(true);
+~x = Synth.new(\sinte1).run(false);  //la variable de ambiente ~x actuando como variable globar, el sintetizador es alojado en un nodo, pero no corre debido a que esta 						 
+~x.run.(true);  //
 ~x.run(false);
 ~sinth1 
 ```

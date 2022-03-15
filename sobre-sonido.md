@@ -39,4 +39,6 @@ podemos ver las APIs usadas por SC para los servicios de audio. Estos son los re
 ```
 
 MME (MultiMedia Extension) o Microsoft Sound Mapper es el driver por defecto de Windows. WDM es Windows Driver Model y KS es Kernel Streaming, estos operan en el modo kernel del sistema operativo. WASAPI hace referencia a Windows Audio Sesion API, es un driver de baja latencia que permite el flujo de audio desde el cliente hacia las salidas (endpoint devices). [Este artículo](https://www.thewelltemperedcomputer.com/KB/WASAPI.htm) contiene más información acerca de esto, como el siguiente cuadro, que muestra la arquitectura de audio en Windows.
+
 ![Arquitectura de Audio en Windows](https://www.thewelltemperedcomputer.com/Pictures/Software/Tweak/DiagramWinAudio.jpg "Arquitectura de Audio en Windows")
+
