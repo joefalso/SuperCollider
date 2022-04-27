@@ -10,3 +10,4 @@ Hasta el momento, las fuentes en las que me he basado para escribir las notas so
 - [SuperCollider 3.11.2 Documentation home](https://depts.washington.edu/dxscdoc/Help/Help.html "ir a página")
 - Introduction to SuperCollider, Andrea Valle
 - Mark Polish tutorial
+- Eli Fieldsteel youtube channel: https://www.youtube.com/channel/UCAf4fP8QzKkJ_t-c1F2v27Q
