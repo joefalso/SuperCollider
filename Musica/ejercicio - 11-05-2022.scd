@@ -1,3 +1,6 @@
+// basado en https://www.youtube.com/watch?v=fnMHDYzGkeU - Week 11: Intermediate Coding with SuperCollider – MUS 499C Spring 2021
+
+
 // JITLib
 
 NodeProxy.help;
@@ -101,3 +104,79 @@ n.source = {
 )
 
 
+// con Ndef
+
+n.clear;
+
+Ndef(\n).play;
+Ndef(\n).fadeTime_(4);
+Ndef(\n).clock_(t);
+Ndef(\n).quant_(1);
+
+(
+Ndef(\n, {
+	var sig;
+	sig = PinkNoise.ar(0.5!2);
+	sig = BPF.ar(sig, SinOsc.kr(1).exprange(200,400), 0.4);
+});
+)
+
+(
+Ndef(\n, {
+	var sig, f;
+	f = t.tempo;
+	sig = PinkNoise.ar(0.5!2);
+	sig = BPF.ar(sig, SinOsc.kr(f/4).exprange(200,400), 0.2);
+});
+)
+
+(
+Ndef(\n, {
+	var sig, f;
+	f = t.tempo;
+	sig = PinkNoise.ar(0.5!2);
+	sig = BPF.ar(sig, SinOsc.kr(f/2).exprange(200,400), 0.4);
+	sig = sig * LFPulse.kr(f*8, 0, 0.2);
+});
+)
+
+(
+Ndef(\n, {
+	var sig, f;
+	f = t.tempo;
+	sig = PinkNoise.ar(0.5!2);
+	sig = BPF.ar(sig, SinOsc.kr(f/2).exprange(200,400), 0.4);
+	sig = sig * LFPulse.kr(f*4, [0,0.5], 0.2);
+});
+)
+
+
+Ndef(\n).stop();
+// ó
+Ndef(\n).clear(2);
+// ó
+Ndef(\n, {nil});
+// ó
+Ndef(\n, {});  // {nil} = {}
+
+
+// otra forma de definir Ndef
+(
+Ndef(\n)
+.fadeTime_(4)
+.clock_(t)
+.quant_(1)
+.play;
+)
+
+// ahora tocar esto:
+(
+Ndef(\n, {
+	var sig, f;
+	f = t.tempo;
+	sig = PinkNoise.ar(0.5!2);
+	sig = BPF.ar(sig, SinOsc.kr(f/4).exprange(200,400), 0.2);
+});
+)
+
+//video en tiempo 41:43
