@@ -151,7 +151,7 @@ Ndef(\n, {
 )
 
 
-Ndef(\n).stop();
+Ndef(\n).stop(4);
 // ó
 Ndef(\n).clear(2);
 // ó
@@ -179,4 +179,141 @@ Ndef(\n, {
 });
 )
 
-//video en tiempo 41:43
+/////////////
+//proxyspace
+
+currentEnvironment;
+
+e = Environment.new;  //un nuevo ambiente
+e.push;  // abre el stack en e
+currentEnvironment;
+
+~k = 8;
+~drink = "fanta";  //alojo cosas en el ambiente
+currentEnvironment;  // ver que cosas hay en e
+e;  //lo mismo que currentEnvironment
+e.pop;  //salir del ambiente e
+currentEnvironment; // nada
+
+e.push;
+currentEnvironment.keys.do({arg key; currentEnvironment.removeAt(key)});
+// -> Set[ k, drink ]   , vació las variables en e (las vuelve a nil)
+
+currentEnvironment;
+
+t = TempoClock.new(84/60).permanent_(true);
+(
+p = ProxySpace.new(s, clock:t);
+p.quant_(4);
+p.push;
+)
+
+currentEnvironment;
+
+~sig;
+currentEnvironment;
+p;
+/*-> ProxySpace (
+~sig - ir(nil)
+)
+ir : initial rate(vacío), la variable ~sig esta lista par alojar sinths
+*/
+
+~sig.play;
+~sig = {PinkNoise.ar(0.1!2)};
+~sig.clear(3);
+~sig = nil;
+
+~sig.fadeTime_(4);
+~sig.play;
+~sig = {PinkNoise.ar(0.1!2)};  //empieza con fadein = 4 seg
+~sig.clear(4);
+
+
+~sig.clock;
+~sig.quant;
+
+p.clear; //limpia los nodos (nodeproxys)
+
+
+
+(
+SynthDef.new(\filtsaw, {
+	var sig, env;
+	sig = VarSaw.ar(\freq.kr(100), Rand(0.0, 1.0), 0.001);
+	sig = RLPF.ar(sig, \cf.kr(500), \rq.kr(0.5));
+	env = Env.perc(\atk.ir(0.002), \rel.ir(0.3)).ar(2);
+	sig = sig * env;
+	sig = Pan2.ar(sig, \pan.kr(0), \amp.kr(0.2));
+	Out.ar(\out.ir(0), sig);
+}).add;
+)
+
+(
+x = Pbind(
+	\instrument, \filtsaw,
+	\dur, 0.2,
+	\midinote, Pseq([28,28,40,28,40], inf) + [0,0.1],
+	\cf, (Pkey(\midinote).midicps * 8).min(20000),
+	\rq, Pexprand(0.1,0.5,inf),
+	\pan, Pwhite(-0.2,0.2,inf),
+).play;
+)
+x.stop;
+
+//para setear en caliente:
+
+~pat.play;
+
+~pat.clock.tempo;
+~pat.quant;
+~pat.fadeTime_(4);
+
+(
+~pat = Pbind(
+	\instrument, \filtsaw,
+	\dur, 0.25,
+	\midinote, Pseq([28,28,40,28,40], inf) + [0,0.1],
+	\cf, (Pkey(\midinote).midicps * 8).min(20000),
+	\rq, Pexprand(0.1,0.5,inf),
+	\pan, Pwhite(-0.2,0.2,inf),
+);
+)
+
+(
+~pat = Pbind(
+	\instrument, \filtsaw,
+	\dur, 0.25,
+	\midinote, Pseq([28,28,40,28,40], inf) + [0,0.1] + 4,
+	\cf, (Pkey(\midinote).midicps * 8).min(20000),
+	\rq, Pexprand(0.1,0.5,inf),
+	\pan, Pwhite(-0.2,0.2,inf),
+);
+)
+
+(
+~pat = Pbind(
+	\instrument, \filtsaw,
+	\dur, 0.25,
+	\midinote, Pseq([28,28,40,28,40], inf) + [0,0.1] - 4,
+	\cf, (Pkey(\midinote).midicps * 8).min(20000),
+	\rq, Pexprand(0.1,0.5,inf),
+	\pan, Pwhite(-0.2,0.2,inf),
+);
+)
+
+// ver cambios en nodetree
+
+(
+~pat = Pbind(
+	\instrument, \filtsaw,
+	\dur, 0.25,
+	\midinote, Pseq([28,28,40,28,40], inf) + [0,0.1] + 1,
+	\cf, (Pkey(\midinote).midicps * 8).min(20000),
+	\rq, Pexprand(0.1,0.5,inf),
+	\pan, Pwhite(-0.2,0.2,inf),
+);
+)
+
+~pat.clear(4);
+s.quit;
