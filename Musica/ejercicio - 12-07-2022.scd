@@ -1,5 +1,7 @@
 // practica 12-07-2022
 
+s.boot;
+
 // desde pag 152 (Synth definitions)
 //Three separate nodes of "SH" with different arugments.
 //Run these three lines in sequence then stop.
@@ -10,12 +12,14 @@ c = Synth("SH", [\rate, 30, \offset, 2000]);
 a.free;
 b.free;
 c.free;
+
 //Changing a parameter of an existing node. Run these lines in sequence.
 a = Synth("SH", [\rate, 23, \offset, 30, \decay, 20]);
 a.set(\offset, 1000)
 a.set(\offset, 300)
 a.set(\offset, 800)
 a.free;
+
 //Two nodes with arguments
 a = Synth("SH", [\rate, 7, \offset, 200, \decay, 20]);
 b = Synth("SH", [\rate, 23, \offset, 1200, \decay, 20]);
@@ -63,3 +67,5 @@ rrand(1.0, 5.0).wait; //wait time between repetitions
 }).play
 )
 r.stop(5);
+
+s.quit;
