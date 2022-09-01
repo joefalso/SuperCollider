@@ -33,8 +33,9 @@ SynthDef.new(\bass, {
 
 SynthDef.new(\drum, {
 	| gate=1, curve= -8.0, mul=1 |
-	var sig, env;
-	sig = WhiteNoise.ar(mul);
+	var sig, env, rlpf;
+	sig = BrownNoise.ar(mul);
+	sig = RHPF.ar(sig, \freq.kr(100), \rq.kr(1.0));
 	env = EnvGen.kr(Env.perc(\atk.kr(0.001), \rel.ir(1), curve: curve), gate, doneAction: Done.freeSelf);
 	sig = sig * env;
 	sig = FreeVerb.ar(sig, \mix.kr(0.33), \room.kr(0.5), \damp.kr(0.5));
@@ -88,12 +89,18 @@ SynthDef.new(\mel, {
 	\scale, Scale.minor,
 	\degree, Pseq([
 		Prand([0,3,5,7],2),
-		Prand([2,4,\],1)
-	], inf),
+		Prand([2,4,6,\],1)
+	], inf) + [0.0,0.02] + 0,
 	\octave, [3],
-	\dur, 1/2,
+	\dur, Prand([
+		Pseq([1/4],2),
+		Pseq([1/2],1)
+	],inf),
 	\pan, Pwhite(-1,1,inf),
-	\amp, 0.2,
+	\amp, 0.5,
+	\mix, 0.5,
+	\room, 0.5,
+	\damp, 0.5
 );
 )
 
@@ -101,9 +108,43 @@ SynthDef.new(\mel, {
 ~drum = Pbind(
 	\instrument, \drum,
 	\mul, Pseq([1], inf),
-	\dur, Pseq([1/2,1/2,1], inf),
+	\dur, Prand([
+		Pseq([3/4,1/4], 1),
+		Pseq([1/2,1/2], 1),
+		Pseq([1/4], 4)
+	], inf),
 	\pan, Pwhite(-0.2,0.2, inf),
-	\amp, 0.1,
+	\amp, 0.3,
+	\mix, 0.5,
+	\room, 0.2,
+	\damp, 0.8,
+	\midinote, Pseq([77], inf)+ [0.0,0.1],
+	\rq, Pwhite(0.2,0.5, inf)
+);
+)
+
+(
+~drum = Pbind(
+	\instrument, \drum,
+	\mul, Pseq([1], inf),
+	\dur, Pseq([2], inf),
+	\pan, Pwhite(-0.2,0.2, inf),
+	\amp, 0.025,
+	\mix, 0.2,
+	\room, 0.5,
+	\damp, 0.1
+);
+)
+
+(
+~drum = Pbind(
+	\instrument, \drum,
+	\mul, Pseq([1], inf),
+	\dur, Pseq([
+		Pseq([\,1,\,1],inf),
+	], inf),
+	\pan, Pwhite(-0.2,0.2, inf),
+	\amp, 0.025,
 	\mix, 0.1,
 	\room, 0.1,
 	\damp, 0.5
@@ -114,11 +155,19 @@ SynthDef.new(\mel, {
 ~mel = Pbind(
 	\instrument, \mel,
 	\scale, Scale.minor,
-	\degree, Pseq([0,\,\,3], inf),
-	\octave, [4],
-	\dur, 2,
+	\degree, Pseq([0,\,\,3,\,\,5], inf) + [0.0,0.009],
+	\octave, [3],
+	\dur, Pseq([2.2],inf),
 	\pan, Pwhite(-1,1, inf),
-	\amp, 0.2,
+	\amp, Pwhite(0.05,0.3, inf)
 );
 )
 
+(
+~mel.free(3);
+~bass.free(3);
+~drum.free(3);
+)
+
+BLo
+NHHall
