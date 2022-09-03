@@ -4,7 +4,7 @@ ServerTree.removeAll;
 ServerQuit.removeAll;
 Tdef.removeAll;
 
-//asaignar más memoria virtual
+//asignar más memoria virtual
 s.options.numBuffers = 1024 * 16;
 s.options.memSize = 8192 * 128;
 
