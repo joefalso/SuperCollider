@@ -34,12 +34,29 @@ SynthDef.new(\sinte1, {
 	sig = Pan2.ar(sig, \pan.kr(0.0), \amp.kr(0.3));
 	Out.ar(0, sig)
 }).add;
+
+SynthDef.new(\sinte2, {
+	var sig, env;
+	sig = LFTri.ar(\freq.kr(100));
+	env = EnvGen.kr(Env([0,1,0], [\timelo.kr(1), \timehi.kr(1)], curve: 'lin'), \gate.kr(1), doneAction: Done.freeSelf);
+	sig = sig * env;
+	sig = Pan2.ar(sig, \pan.kr(0.0), \amp.kr(0.3));
+	Out.ar(0, sig)
+}).add;
+
 )
 
 ({
 ~sinte1
 	.play
-	.
+	.fadetime_(0.0)
+	.quant_(0.0)
+};
+{
+~sinte2
+	.play
+	.fadetime_(0.0)
+	.quant_(0.0)
 };
 )
 
@@ -56,7 +73,7 @@ Scale.at(\catastrophic); // access the scale
 	\instrument, \sinte1,
 	\dur, 1/4,
 	\scale, Scale.minorPentatonic,
-	\octave, [3],
+	\octave, [6],
 	\degree, Pseq([
 		Pseq([
 			Pseq([0,4,2], 2),
@@ -69,17 +86,34 @@ Scale.at(\catastrophic); // access the scale
 			Pxrand([1,7], 2),
 	], 10)
 	], inf) + [0.0,0.01],
-	\harm, 600,
-	\freqflt, Pseq([50,75,100,125,150,175,200,225,250,275,300,325,350,375,400,375,350,325,300,275,250,225,200,175,150,125,100,75], inf),
+	\harm, 700,
+	//\freqflt, Pseq([50,75,100,125,150,175,200,225,250,275,300,325,350,375,400,375,350,325,300,275,250,225,200,175,150,125,100,75], inf),
+	\freqflt, Pseq([Phprand(50,400,20), Plprand(50,400,20)],inf),
 	\rq, 0.01,
 	\atk, 0.001,
 	\rel, 0.75,
-	\curve, -12.0,
+	\curve, -8.0,
 	\gate, 1,
 	\pan, Pwhite(-0.5,0.5, inf),
-	\amp, 0.3,
+	\amp, 0.7,
 );
 )
+
+
+(
+~sinte2 = Pbind(
+	\instrument, \sinte2,
+	\dur, 4,
+	\scale, Scale.minorPentatonic,
+	\octave, [2],
+	\degree, Pseq([4,\,8,\,12], inf),
+	//\freqflt, Pseq([50,75,100,125,150,175,200,225,250,275,300,325,350,375,400,375,350,325,300,275,250,225,200,175,150,125,100,75], inf),
+	\gate, 1,
+	\pan, Pwhite(-0.5,0.5, inf),
+	\amp, 0.05,
+).trace;
+)
+
 
 (Pbind(\scale, a, \degree, Pseq((0..7) ++ (6..0) ++ [\rest], 1), \dur, 0.25).play;)
 
