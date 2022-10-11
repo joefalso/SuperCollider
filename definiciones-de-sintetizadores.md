@@ -15,7 +15,7 @@ SynthDef(\sinth, {|out = 0, freq = 440, amp = 0.5|
     }).add;
 )
 ```
-Luego de crearlo, se recomienda alojarlo en una variable dinámica.
+Luego de crearlo, se recomienda alojarlo en una variable de ambiente.
 
 ``` supercollider
 ~x = Synth.new(\sinth);
@@ -33,3 +33,4 @@ Algunos manejos básico de las variables dinámicas.
 ~x.run(true);   //reactiva el sintetizador
 ~x.free;        //se libera
 ```
+

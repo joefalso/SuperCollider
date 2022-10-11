@@ -10,6 +10,7 @@ s.boot;
 s.meter;
 
 n = NodeProxy.new(s, \audio, 2);  //tambien puede usarse el NodeProxy sin argumentos, y n iría modificándose luego
+n;
 n.play;  // no tiene fuente
 
 n.source = {SinOsc.ar([300, 302]) * 0.1};  // este nodo-fuente puede reemplazarse
@@ -19,7 +20,7 @@ n.source = {BPF.ar(PinkNoise.ar(0.5!2), 500, 0.1, 2)}; // por este, sin crear un
 
 n.source = nil; // este reemplaza el nodo por un nulo
 
-n.clear;  // limpia el nodo proxy (ver el árbol)
+n.clear(4);  // limpia el nodo proxy (ver el árbol)
 n.stop;
 
 
@@ -34,7 +35,7 @@ n.end;
 n.clear;
 
 n.clear(5);
-
+{ PinkNoise.ar(EnvGen.kr(Env.perc, doneAction: Done.freeSelf)) }.play
 
 n.fadeTime; // default = 0.02; este es el tiempo total que le toma realizar cambios entre reemplazo, es decir, el cambio es paulatino y fijado con fadeTime
 
