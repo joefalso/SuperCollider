@@ -23,15 +23,20 @@ t = TempoClock(84/60).permanent_(true);
 //t.schedAbs(t.beats.ceil, { ~beat = ~beat + 1; ~beat.postln; 1 });
 //t.schedAbs(t.beatInBar.ceil, { arg beat, sec; [beat, sec].postln; 1 });
 
-///// automatización de nodos
+///// para automatización de nodos y grupos
 
 p = ProxySpace.new(s, clock: t);
 p.push;
 
 //p.fadeTime_(2.5);
 //p.quant_(2.5);
-)
 
+///// espectrograma, canales
+
+SpectrogramWindow.new;
+s.meter;   //canales default
+
+)
 
 ///////////////////////////////
 ///     Sintetizadores
