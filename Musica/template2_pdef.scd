@@ -51,27 +51,16 @@ SynthDef.new(\sinte1 , {
 
 
 ///////////////////////////////
-///     Alojar variables
-//////////////////////////////
-
-({
-~variable
-	.play
-	.quant_(0.0)
-	.fadeTime_(0.0)
-}
-)
-
-
-///////////////////////////////
 ///     Patrones
 ///////////////////////////////
 
 (t.schedAbs(t.nextBar,
 	{
-		~variable = Pbind(
-			\instrument, ,
-	);
-	}
-);
-)
+		Pdef(\nombre,
+			Pbind(
+				\instrument, \sinte1,
+
+			)
+		).play;
+	};
+))

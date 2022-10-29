@@ -118,7 +118,7 @@ t.schedAbs(t.nextBar,
 		\octave, [5],
 		\pan, Pwhite(-1,1, inf),
 		\amp, 1.4
-	).trace;
+	);
 	}
 );
 )
