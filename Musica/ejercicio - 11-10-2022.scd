@@ -54,17 +54,20 @@ SynthDef.new(\coin, {
 
 ({
 ~bass
-	.quant
+	.quant_(0.0)
+	.fadeTime_(0.0)
 	.play
 };
 {
 ~drum
-	.quant
+	.quant_(0.0)
+	.fadeTime_(0.0)
 	.play
 };
 {
 ~wood
-	.quant
+	.quant_(0.0)
+	.fadeTime_(0.0)
 	.play
 };
 )
@@ -83,9 +86,9 @@ t.schedAbs(t.nextBar,
 		\scale, Scale.minor,
 		\degree, Pseq([0,4,6,\], inf),
 		\octave, [4],
-		\dur, Pseq([1], inf),
+		\dur, Pseq([1/2], inf),
 		\pan, Pwhite(-1,1, inf),
-		\amp, 0.7
+		\amp, 0.35
 	);
 	}
 )
@@ -99,9 +102,9 @@ t.schedAbs(t.nextBar,
 		\scale, Scale.minor,
 		\degree, Pseq([1], inf),
 		\octave, [1],
-		\dur, Pseq([1], inf),
+		\dur, Pseq([2/3], inf),
 		\pan, Pwhite(-1,1, inf),
-		\amp, 0.075
+		\amp, 0.045
 	);
 	}
 )
@@ -122,3 +125,7 @@ t.schedAbs(t.nextBar,
 	}
 );
 )
+
+~bass.clear(3);
+~drum.clear(3);
+~wood.clear(3);

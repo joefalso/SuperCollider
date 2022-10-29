@@ -44,14 +44,22 @@ SpectrogramWindow.new.waitForBoot;
 //////////////////////////////
 
 (
-SynthDef.new(\sinte1 , {
+SynthDef.new(\sinte1, {
 	var sig, env;
 	//sig = SinOsc.ar(rrand(200, 1000));
 	sig = Mix.fill(20, {VarSaw.ar(rrand(200, 2000), 0)});
 	env = EnvGen.kr(Env.linen(1, 2, 3, 0.6), doneAction: Done.freeSelf);
 	sig = sig * env;
+	//sig = Resonz.ar(sig, \freqres.kr(440), \bwr.kr(1.0));
+	//sig = RHPF.ar(sig, \freqres.kr(440), \rq.kr(1.0));
+	sig = RHPF.ar(sig, MouseY.kr(1000,4000), MouseX.kr(0.1,1.0));
 	sig = Pan2.ar(sig, \pan.kr(0.0), \amp.kr(0.2));
-	Out.ar(0, sig);
+	Out.ar(0, sig)
+}).add;
+
+SynthDef.new(\sinte2, {
+	var sig, env;
+
 }).add;
 )
 
@@ -78,6 +86,8 @@ SynthDef.new(\sinte1 , {
 		~sinte1 = Pbind(
 			\instrument, \sinte1,
 			\dur, Pseq([1], 1),
+			\freqres, 1000,
+			\rq, 0.3,
 			\amp, 0.1
 	);
 	}
