@@ -1,5 +1,5 @@
 (
-SynthDef.new(\sinte1, {
+SynthDef.new(\sinmix, {
 	var sig, env;
 	//sig = SinOsc.ar(rrand(200, 1000));
 	sig = Mix.fill(20, {VarSaw.ar(rrand(200, 2000), 0)});
@@ -84,6 +84,51 @@ SynthDef.new(\bufplay, {
 	sig = PlayBuf.ar(2, buf, BufRateScale.ir(buf) * rate, doneAction:2);
 	sig = Pan2.ar(sig, pan, amp);
 	Out.ar([0,1], sig);
+}).add;
+
+SynthDef.new(\blips, {
+	var sig, env;
+	sig = Blip.ar(\freq.kr(200), \harm.kr(30));
+	env = EnvGen.kr(Env.perc(\atk.kr(0.001), \rel.kr(0.5)), doneAction: Done.freeSelf);
+	sig = sig * env;
+	sig = Pan2.ar(sig, \pan.kr(0.0), \amp.kr(0.2));
+	Out.ar(0, sig)
+}).add;
+
+SynthDef.new(\klang, {
+	var sig, env;
+	sig = Klang.ar(`[ {exprand(400, 2000)}.dup(12), nil, nil ], 1, 0);
+	env = EnvGen.kr(Env([0,1,0], curve: 'lin'), doneAction: Done.freeSelf);
+	sig = sig * env;
+	sig = Pan2.ar(sig, \pan.kr(0.0), \amp.kr(0.2));
+	Out.ar(0, sig)
+}).add;
+
+SynthDef.new(\klang2, {
+	var sig, env;
+	sig = Klang.ar(`[ {exprand(400, 2000)}.dup(24), nil, nil ], 1, 0);
+	env = EnvGen.kr(Env.sine(6), doneAction: Done.freeSelf);
+	sig = sig * env;
+	sig = Pan2.ar(sig, \pan.kr(0.0), \amp.kr(0.2));
+	Out.ar(0, sig)
+}).add;
+
+SynthDef.new(\twobandsq, {
+	var sig, env;
+	env = XLine.kr(8000,200,2, doneAction: Done.freeSelf);
+	sig = Pulse.ar([100,250],0.5,0.1);
+	sig = RLPF.ar(sig, env, 0.05);
+	sig = Pan2.ar(sig, \pan.kr(0.0), \amp.kr(0.2));
+	Out.ar(0, sig)
+}).add;
+
+SynthDef(\reswhite, {
+	var sig, env;
+	sig = ClipNoise.ar;
+	env = XLine.kr(1, 0.0001, \dur.kr(8), doneAction: Done.freeSelf);
+	sig = Resonz.ar(sig, \freq.kr(2000), env);
+	sig = Pan2.ar(sig, \pan.kr(0.0), \amp.kr(0.2));
+	Out.ar(0, sig)
 }).add;
 
 SynthDef(\buf_grain_test, {arg gate = 1, sndbuf, amp = 1;
