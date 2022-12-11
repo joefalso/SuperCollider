@@ -23,21 +23,13 @@ t = TempoClock(84/60).permanent_(true);
 //t.schedAbs(t.beats.ceil, { ~beat = ~beat + 1; ~beat.postln; 1 });
 //t.schedAbs(t.beatInBar.ceil, { arg beat, sec; [beat, sec].postln; 1 });
 
-///// automatización de nodos
-
-p = ProxySpace.new(s, clock: t);
-p.push;
-
-//p.fadeTime_(2.5);
-//p.quant_(2.5);
-
 ///// boot
 s.boot;
 
-///// espectrografo
-SpectrogramWindow.new.waitForBoot;
 )
 
+///// espectrografo
+SpectrogramWindow.new.waitForBoot;
 
 ///////////////////////////////
 ///     Sintetizadores
@@ -54,13 +46,14 @@ SynthDef.new(\sinte1 , {
 ///     Patrones
 ///////////////////////////////
 
+
 (t.schedAbs(t.nextBar,
 	{
-		Pdef(\nombre,
+		Pdef(\nombre_distinto_a_sinte1,
 			Pbind(
-				\instrument, \sinte1,
-
+				\instrument, \sinte1
 			)
-		).play;
+		).play(t);
 	};
 ))
+

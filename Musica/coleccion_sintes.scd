@@ -96,8 +96,9 @@ SynthDef.new(\blips, {
 }).add;
 
 SynthDef.new(\klang, {
+	arg fact;
 	var sig, env;
-	sig = Klang.ar(`[ {exprand(400, 2000)}.dup(12), nil, nil ], 1, 0);
+	sig = Klang.ar(`[ {exprand(400, 2000)}.dup(12), nil, nil ], 1, 0) * fact;
 	env = EnvGen.kr(Env([0,1,0], curve: 'lin'), doneAction: Done.freeSelf);
 	sig = sig * env;
 	sig = Pan2.ar(sig, \pan.kr(0.0), \amp.kr(0.2));
